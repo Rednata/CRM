@@ -1,18 +1,11 @@
 "use strict";
 
-let nameProduct = "диван";
-let quantity = 5;
-let category = "угловой";
-let price = 5000;
-
-// console.log("Наименование товара:", nameProduct);
-// console.log("Сумма товара:", quantity*price);
-
-nameProduct = prompt('Введите наименование товара');
-quantity = prompt('Введите количество товара');
-price = prompt('Введите категорию товара');
+const nameProduct = prompt('Введите наименование товара', "диван");
+const quantity = +prompt('Введите количество товара', 5);
+const category = prompt('Введите категорию товара', "угловой");
+const price = +prompt('Введите стоимость товара', 5000);
 
 console.log(typeof quantity);
 console.log(typeof price);
 
-console.log(`На складе ${quantity} единицы товара "${nameProduct}" на сумму ${quantity * price} деревянных`);
+console.log(`На складе ${quantity}ед. товара "${nameProduct}" на сумму ${quantity * price} деревянных`);
