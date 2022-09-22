@@ -18,6 +18,7 @@ if (income1 <= limit1) {
 
 console.log(`Ваш налог по первой задаче составил: ${tax1} ₽`);
 
+
 // Вторая  задача 
 console.log('Вторая задача "tasksHard_2":');
 const income2 = +prompt('Введите сумму дохода для второй задачи:');
