@@ -1,4 +1,6 @@
-const cart = 
+'use strict';
+
+const cart =
   {
     items: [],
     totalPrice: 0,
@@ -13,11 +15,11 @@ const cart =
       this.count += newCount;
     },
     add(nameItem, priceItem, countItem = 1) {
-      let item = {
-      nameItem,
-      priceItem,
-      countItem,
-    };      
+      const item = {
+        nameItem,
+        priceItem,
+        countItem,
+      };
       cart.items.push(item);
       this.calculateItemPrice(priceItem, countItem);
       this.increaseCount(countItem);
