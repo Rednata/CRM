@@ -10,10 +10,10 @@ const rectangle = {
     this.currentHeight = value;
   },
   get perimeter() {
-    return console.log((this.currentWidth + this.currentHeight) * 2);
+    return console.log(`${(this.currentWidth + this.currentHeight) * 2}см`);
   },
   get square() {
-    return (console.log(this.currentWidth * this.currentHeight));
+    return console.log(`${this.currentWidth * this.currentHeight}см`);
   },
 };
 
