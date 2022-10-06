@@ -1,3 +1,3 @@
-const ip = (arr) => {
-  return (new Set(arr)).size;
-};
+'use strict';
+
+const ip = (arr) => (new Set(arr)).size;

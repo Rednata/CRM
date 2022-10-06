@@ -1,16 +1,18 @@
-const cart = 
+'use strict';
+
+const cart =
   {
-    items: [],    
+    items: [],
     count: 0,
     get totalPrice() {
       return this.calculateItemPrice(this.items);
     },
 
-    calculateItemPrice(items) {      
+    calculateItemPrice(items) {
       let sum = 0;
-      for (const i of items) {        
-        sum += i.priceItem * i. countItem
-      }            
+      for (const i of items) {
+        sum += i.priceItem * i.countItem;
+      }
       return sum;
     },
 
@@ -18,13 +20,13 @@ const cart =
       this.count += newCount;
     },
     add(nameItem, priceItem, countItem = 1) {
-      let item = {
-      nameItem,
-      priceItem,
-      countItem,
-    };      
+      const item = {
+        nameItem,
+        priceItem,
+        countItem,
+      };
       cart.items.push(item);
-      this.increaseCount(countItem);      
+      this.increaseCount(countItem);
     },
     clear() {
       this.totalPrice = 0;
