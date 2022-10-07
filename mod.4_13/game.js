@@ -26,8 +26,11 @@
 
     if (str === null) {
       alert('Точно хочешь выйти?');
-      return alert(`Результат игры:\nКомпьютер: 
-      ${result.computer}\nВы: ${result.player}`);
+      return alert(`Результат игры:
+      \nКомпьютер:${result.computer}\nВы: ${result.player}`);
+    } else if (!FIGURES_RUS.some(item => (item.includes(str.toLowerCase())))) {
+      alert('Вводи правильно!');
+      return start();
     } else {
       const playerWord = playerFullWord(str.toLowerCase(), FIGURES_RUS);
       game(playerWord, computerWord);
