@@ -2,6 +2,8 @@
 
 (() => {
   const FIGURES_RUS = ['камень', 'ножницы', 'бумага'];
+  const FIGURES_ENG = ['rock', 'scissors', 'paper'];
+
 
   // Рандомное слово
   const getRandomInclusive = (min, max) => {
@@ -23,12 +25,13 @@
   const start = () => {
     const str = prompt('камень, ножницы, бумага?');
     const computerWord = FIGURES_RUS[getRandomInclusive(0, 2)];
-
+  // Проверяем введенную пользователем информацию
+    const incorrect = FIGURES_RUS.some(item => (item.includes(str.toLowerCase())));
     if (str === null) {
       alert('Точно хочешь выйти?');
       return alert(`Результат игры:
       \nКомпьютер:${result.computer}\nВы: ${result.player}`);
-    } else if (!FIGURES_RUS.some(item => (item.includes(str.toLowerCase())))) {
+    } else if (!incorrect) {
       alert('Вводи правильно!');
       return start();
     } else {
