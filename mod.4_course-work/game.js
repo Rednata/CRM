@@ -7,6 +7,8 @@
     countPlayer: 5,
     countBot: 5,
   };
+  let flag = true;
+
   /* Функция вывода информации о количестве шариков у игроков.
   Если число отрицательное, то выводим 0 */
   const getBallsCount = () => {
@@ -20,10 +22,17 @@
 \nИгрок: ${balls.countPlayer}\nБот: ${balls.countBot}`);
   };
 
-  // Ход игры (первым ходит игрок)
+  // Ход игрока
   const playerGame = () => {
-    const playerPrompt = +prompt(`Ход игрока\n*******************
+    const tempPlayer = prompt(`Ход игрока\n*******************
   \nВведи число от 1 до ${balls.countPlayer}`);
+
+    if (tempPlayer === null) {
+      return flag = false;
+    }
+    // console.log(+tempPlayer);
+
+    const playerPrompt = +tempPlayer;
 
     if (!Number.isInteger(playerPrompt) ||// Проверка правильно ли введено число
     playerPrompt > balls.countPlayer ||
@@ -47,7 +56,7 @@
     }
   };
 
-  // Ход игры (первым ходит бот)
+  // Ход бота
   const botGame = () => {
     const botNumber = getRandomInt(1, balls.countBot);
     const player = confirm(`Бот загадал число\n*******************
@@ -74,15 +83,20 @@
     const str = prompt('камень, ножницы, бумага?');
     const computerWord = FIGURES_RUS[getRandomInt(0, 2)];
 
+
     // Приведение возможно сокращенной формы загаданного слова к полному слову
     const playerFullWord = (str, arr) => arr.find(item => item[0] === str[0]);
 
     // Проверяем введенную пользователем информацию
+    if (str === null) {
+      alert('Конец игры!');
+      return;
+    }
     const incorrect = FIGURES_RUS.some(item =>
       (item.includes(str.toLowerCase())));
     if (!incorrect) {
       alert('Вводи правильно!');
-      return gameRSP(); // ?????????
+      return gameRSP();
     } else {
       const playerWord = playerFullWord(str.toLowerCase(), FIGURES_RUS);
       game(playerWord, computerWord);
@@ -94,8 +108,7 @@
     `Компьютер: ${computerWord}\nВы: ${playerWord}\n_________________`;
       if (playerWord === computerWord) {
         alert(`${wordsGame}\nНичья!`);
-        // return start();
-        return gameRSP(); // ?????????
+        return gameRSP();
       } else {
         const current = playerWord + computerWord;
         if (current === 'каменьножницы' ||
@@ -103,16 +116,12 @@
         current === 'бумагакамень') {
           alert(`${wordsGame}\nВы Выиграли!
           \nВам предоставляется право первого хода`);
-          // result.player += 1;
-          // return start();
+          getBallsCount();
           return startGame(1);
-        // return t1(1);
         } else {
           alert(`${wordsGame}\nКомпьютер выиграл!\nПервым ходит бот`);
-          // result.computer += 1;
-          // return start();
+          getBallsCount();
           return startGame(0);
-        // return t1(0);
         }
       }
     }
@@ -123,20 +132,23 @@
     while (balls.countPlayer > 0 &&
       balls.countBot > 0) {
       if (n % 2) {
-        getBallsCount();
         playerGame();
       } else {
-        getBallsCount();
         botGame();
+      }
+      getBallsCount();
+      if (flag === false) {
+        break;
       }
       n++;
     }
-    getBallsCount();
+
     alert('Конец игры');
     const moreGame = confirm('Хотите сыграть еще?');
     if (moreGame) {
       balls.countPlayer = 5;
       balls.countBot = 5;
+      flag = true;
       gameRSP();
     } else {
       alert('Пока!');

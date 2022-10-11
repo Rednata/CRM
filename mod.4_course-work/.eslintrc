@@ -264,7 +264,7 @@
       "error",
       {
         "require": {
-          "FunctionDeclaration": true,
+          "FunctionDeclaration": false,
           "MethodDefinition": true,
           "ClassDeclaration": true
         }
